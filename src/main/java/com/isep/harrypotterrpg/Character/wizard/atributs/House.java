@@ -1,4 +1,10 @@
 package com.isep.harrypotterrpg.Character.wizard.atributs;
 
-public class House {
+public enum House {
+    GRIFFINDOR,
+    SLITHERIN,
+    HUFFLEPUFF,
+    RAVENCLAW,
+
 }
+
