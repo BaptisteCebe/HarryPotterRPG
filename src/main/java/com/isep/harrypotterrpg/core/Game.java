@@ -1,5 +1,10 @@
 package com.isep.harrypotterrpg.core;
+import com.isep.harrypotterrpg.Character.enemy.Boss;
+import com.isep.harrypotterrpg.Character.wizard.Wizard;
 import com.isep.harrypotterrpg.Character.wizard.spell.*;
+import com.isep.harrypotterrpg.core.Story;
+
+
 
 public class Game {
 
@@ -39,7 +44,15 @@ public class Game {
 
         //this.myFirtSpell = new Spell("avadekedavra",30f);
 
-        String playerName = this.theDispatcherParser.AKindOfDialogBox("Choix du nom", "Veuillez saisir le nombre de votre sorcier (max:20 caractères).");
+        Story theStory = new Story();
+
+        String playerName = this.theDispatcherParser.AKindOfDialogBox("Choix du nom", "Veuillez saisir le nom de votre sorcier (max:20 caractères).");
+        Wizard player = new Wizard(30f,20f);
+        Boss boss = new Boss(100f,50f);
+        this.theDispatcherParser.PlayerInfo("Voici vos stats",player);
+        this.theDispatcherParser.PlayerInfo("Voici les stats du Boss",boss);
+        this.theDispatcherParser.DisplayString(theStory.getString(Story.StoryType.Intro));
+
 
         String answer = this.theDispatcherParser.AKindOfDialogBox("Nombre de héros ", "Veuillez saisir le nombre de héros souhaité (max:" + this.nbMaxHeroes + ").");
         return ret;

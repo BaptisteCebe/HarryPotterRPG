@@ -1,6 +1,9 @@
 package com.isep.harrypotterrpg.core;
 
 
+import com.isep.harrypotterrpg.Character.Character;
+import com.isep.harrypotterrpg.Character.wizard.Wizard;
+
 import java.util.List;
 import java.util.Scanner;
 
@@ -43,6 +46,22 @@ public class ConsoleParser implements InputOutputParser {
         String answer = sc.nextLine();
         return answer;
     }
+
+    public boolean DisplayString( String str){
+        System.out.println(str);
+        return true;
+
+    }
+
+    public boolean PlayerInfo(String description, Character w){
+        System.out.println(description);
+        System.out.println("Life points : " + w.getLifePoints());
+        System.out.println("Damage points : " + w.getDamagePoints());
+        System.out.println("");
+        return true;
+    }
+
+
 
 }
 

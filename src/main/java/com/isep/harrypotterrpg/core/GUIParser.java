@@ -2,6 +2,8 @@ package com.isep.harrypotterrpg.core;
 
 
 
+import com.isep.harrypotterrpg.Character.Character;
+import com.isep.harrypotterrpg.Character.wizard.Wizard;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
 import javafx.scene.control.TextInputDialog;
@@ -55,6 +57,16 @@ public class GUIParser implements InputOutputParser{
         return answer;
     }
 
+    public boolean DisplayString( String str){
+        return true;
+
+    }
+
+    public boolean PlayerInfo(String description,Character w){
+        System.out.println("Voixi vos stats");
+        System.out.println(w.getLifePoints());
+        return true;
+    }
 
 
     public Optional<String> showTheDialog(String dlgTitle, String dlgQuestion, String dlgDefaultAnswer){

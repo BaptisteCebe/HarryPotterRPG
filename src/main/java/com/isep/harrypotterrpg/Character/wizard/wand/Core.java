@@ -2,6 +2,14 @@ package com.isep.harrypotterrpg.Character.wizard.wand;
 import java.util.Random;
 import java.util.Scanner;
 
+
+public enum Core {
+    DRAGON_HEARTSTRING,
+    PHOENIX_FEATHER,
+    UNICORN_TAIL_HAIR,
+    BASILIC_HORN,
+}
+
 /*
         public void randomWand() {
             Random random = new Random();

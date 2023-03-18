@@ -1,5 +1,6 @@
 package com.isep.harrypotterrpg.Character.wizard.atributs;
 
+
 public enum Pet {
     OWL,
     RAT,
@@ -8,3 +9,4 @@ public enum Pet {
     DOBY,
     DWARF,
 }
+

@@ -1,5 +1,8 @@
 package com.isep.harrypotterrpg.core;
 
+import com.isep.harrypotterrpg.Character.Character;
+import com.isep.harrypotterrpg.Character.wizard.Wizard;
+
 import java.util.List;
 
 public class DispatcherParser implements InputOutputParser{
@@ -27,6 +30,27 @@ public class DispatcherParser implements InputOutputParser{
             ret = theGUIParser.DisplayCurrentOpponents( roundNb);
         else
             ret = theConsoleParser.DisplayCurrentOpponents( roundNb);
+        return true;
+    }
+
+    public boolean DisplayString( String str){
+
+        boolean ret=false;
+        if (isGUI)
+            ret = theGUIParser.DisplayString( str);
+        else
+            ret = theConsoleParser.DisplayString( str);
+        return true;
+    }
+
+
+    public boolean PlayerInfo(String description,Character w){
+
+        boolean ret=false;
+        if (isGUI)
+            ret = theGUIParser.PlayerInfo(description,w);
+        else
+            ret = theConsoleParser.PlayerInfo(description,w);
         return true;
     }
 
