@@ -1,5 +1,5 @@
 package com.isep.harrypotterrpg.core;
-import com.isep.harrypotterrpg.Character.wizard.spell.Spell;
+import com.isep.harrypotterrpg.Character.wizard.spell.*;
 
 public class Game {
 
@@ -37,7 +37,7 @@ public class Game {
 
         this.nbMaxHeroes = 4;
 
-        this.myFirtSpell = new Spell("avadekedavra",30f);
+        //this.myFirtSpell = new Spell("avadekedavra",30f);
 
         String playerName = this.theDispatcherParser.AKindOfDialogBox("Choix du nom", "Veuillez saisir le nombre de votre sorcier (max:20 caractères).");
 

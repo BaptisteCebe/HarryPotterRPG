@@ -1,7 +1,7 @@
 module com.isep.harrypotterrpg {
     requires javafx.controls;
     requires javafx.fxml;
-
+    requires lombok;
 
 
     opens com.isep.harrypotterrpg to javafx.fxml;

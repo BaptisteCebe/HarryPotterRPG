@@ -1,16 +1,25 @@
 package com.isep.harrypotterrpg.Character.wizard.atributs;
 
+import lombok.Getter;
+import lombok.Setter;
+
 public class Potion {
 
     //Attributess
+    //Potion définie par un nom, un ajout d'attaque, un ajout de hp, un ajout de defense, ou un ajout de precision
     private String namePotion;
-    private float infoPotion;
+    private float damagePotion;
+    @Getter
+    @Setter
+    private float healPotion;
+    @Getter
+    @Setter
+    private float defensePotion;
+    @Getter
+    @Setter
+    private float precisionPotion;
 
-    //Getters and Setters
-    public String getNamePotion(){return namePotion;}
-    public void setNamePotion(String newName){namePotion=newName;}
+}
 
-    public float getInfoPotion(){return infoPotion;}
-    public void setInfoPotion(float newInfo){infoPotion=newInfo;}
 
 
