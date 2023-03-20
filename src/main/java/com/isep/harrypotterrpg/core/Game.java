@@ -15,7 +15,6 @@ public class Game {
 
     private int nbMaxHeroes; // max playable heroes
 
-    Spell myFirtSpell;
 
     //private List<Hero> playerHeroes = new ArrayList<>(); // define list of hero instances of the player
 
@@ -40,21 +39,31 @@ public class Game {
     public boolean playGame() { // play the whole game
         boolean ret = false;
 
-        this.nbMaxHeroes = 4;
 
-        //this.myFirtSpell = new Spell("avadekedavra",30f);
 
         Story theStory = new Story();
 
         String playerName = this.theDispatcherParser.AKindOfDialogBox("Choix du nom", "Veuillez saisir le nom de votre sorcier (max:20 caractères).");
-        Wizard player = new Wizard(30f,20f);
-        Boss boss = new Boss(100f,50f);
-        this.theDispatcherParser.PlayerInfo("Voici vos stats",player);
-        this.theDispatcherParser.PlayerInfo("Voici les stats du Boss",boss);
         this.theDispatcherParser.DisplayString(theStory.getString(Story.StoryType.Intro));
+        Wizard player = new Wizard(60f,20f, 50f, 80);
+        Boss boss = new Boss(100f,50f, 100f, 80f);
+
+        Spell spell = new Spell("WINGARDIUM LEVIOSA", 10f,10f,10f,15f);
+
+        Spell spell2 = new Spell("REPARO", 10f,10f,10f,15f);
+        System.out.println("");
+        this.theDispatcherParser.PlayerInfo("Voici vos stats",player);
+        System.out.println("");
+
+        this.theDispatcherParser.SpellInfo("Voixi les stats de votre premier sort", spell);
+        System.out.println("");
+
+        this.theDispatcherParser.SpellInfo("Voixi les stats de votre second sort", spell2);
+        System.out.println("");
+
+        this.theDispatcherParser.PlayerInfo("Voici les stats du Boss",boss);
 
 
-        String answer = this.theDispatcherParser.AKindOfDialogBox("Nombre de héros ", "Veuillez saisir le nombre de héros souhaité (max:" + this.nbMaxHeroes + ").");
         return ret;
     }
         // convert answer String to a number between 0 and max allowed

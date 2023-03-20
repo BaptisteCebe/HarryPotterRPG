@@ -4,8 +4,8 @@ import lombok.Getter;
 import lombok.Setter;
 public class Wizard extends Character {
 
-    public Wizard(float lifePoints,float damagePoints){
-        super (lifePoints,damagePoints);
+    public Wizard(float lifePoints,float damagePoints, float defensePoints, float precisionPoints){
+        super (lifePoints,damagePoints, defensePoints, precisionPoints);
 
     }
 }

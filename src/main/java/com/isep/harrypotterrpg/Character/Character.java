@@ -12,11 +12,19 @@ import lombok.Setter;
         @Getter
         @Setter
         private float damagePoints;
+        @Getter
+        @Setter
+        private float defensePoints;
+        @Getter
+        @Setter
+        private float precisionPoints;
 
-        public Character(float lifePoints, float damagePoints)
+        public Character(float lifePoints, float damagePoints, float defensePoints, float precisionPoints)
         {
             this.lifePoints = lifePoints;
             this.damagePoints = damagePoints;
+            this.defensePoints = defensePoints;
+            this.precisionPoints = precisionPoints;
         }
     }
 

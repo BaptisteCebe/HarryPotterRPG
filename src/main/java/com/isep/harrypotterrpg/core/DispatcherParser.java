@@ -1,7 +1,11 @@
 package com.isep.harrypotterrpg.core;
 
 import com.isep.harrypotterrpg.Character.Character;
+import com.isep.harrypotterrpg.Character.wizard.AbstractSpell;
+
 import com.isep.harrypotterrpg.Character.wizard.Wizard;
+import com.isep.harrypotterrpg.Character.wizard.spell.Spell;
+import com.isep.harrypotterrpg.sortinghat.SortingHat;
 
 import java.util.List;
 
@@ -44,7 +48,7 @@ public class DispatcherParser implements InputOutputParser{
     }
 
 
-    public boolean PlayerInfo(String description,Character w){
+    public boolean PlayerInfo(String description, Character w){
 
         boolean ret=false;
         if (isGUI)
@@ -53,6 +57,18 @@ public class DispatcherParser implements InputOutputParser{
             ret = theConsoleParser.PlayerInfo(description,w);
         return true;
     }
+
+    public boolean SpellInfo(String description, AbstractSpell x){
+
+        boolean ret=false;
+        if (isGUI)
+            ret = theGUIParser.SpellInfo(description,x);
+        else
+            ret = theConsoleParser.SpellInfo(description,x);
+        return true;
+    }
+
+
 
     public String AKindOfDialogBox(String title, String text){
 

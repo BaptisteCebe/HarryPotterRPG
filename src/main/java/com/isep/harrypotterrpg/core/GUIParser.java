@@ -3,7 +3,10 @@ package com.isep.harrypotterrpg.core;
 
 
 import com.isep.harrypotterrpg.Character.Character;
+import com.isep.harrypotterrpg.Character.wizard.AbstractSpell;
 import com.isep.harrypotterrpg.Character.wizard.Wizard;
+import com.isep.harrypotterrpg.Character.wizard.spell.Spell;
+import com.isep.harrypotterrpg.sortinghat.SortingHat;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
 import javafx.scene.control.TextInputDialog;
@@ -68,6 +71,11 @@ public class GUIParser implements InputOutputParser{
         return true;
     }
 
+    public boolean SpellInfo(String description, AbstractSpell x){
+        System.out.println("Voici les stats de vos sorts");
+        System.out.println(x.getNameSpell());
+        return true;
+    }
 
     public Optional<String> showTheDialog(String dlgTitle, String dlgQuestion, String dlgDefaultAnswer){
         TextInputDialog dialog = new TextInputDialog(dlgDefaultAnswer);
