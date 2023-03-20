@@ -1,14 +1,40 @@
 package com.isep.harrypotterrpg.Character.wizard;
+import com.isep.harrypotterrpg.Character.Action;
 import com.isep.harrypotterrpg.Character.Character;
+import com.isep.harrypotterrpg.Character.Action;
 import lombok.Getter;
 import lombok.Setter;
 public class Wizard extends Character {
 
-    public Wizard(float lifePoints,float damagePoints, float defensePoints, float precisionPoints){
-        super (lifePoints,damagePoints, defensePoints, precisionPoints);
+    public Wizard(String nameCharacter,float lifePoints,float maxLifePoints,float damagePoints, float defensePoints, float precisionPoints, float maxPrecisionPoints){
+        super (nameCharacter,lifePoints,maxLifePoints,damagePoints, defensePoints, precisionPoints, maxPrecisionPoints);
+
+    }
+
+
+    public boolean HasThisCapacity(Action.HeroAction actionKind){
+        boolean ret= false;
+        switch(actionKind){
+            case Spell1:
+                ret = true;
+                break;
+            case Spell2:
+                ret =  true;
+                break;
+            case Potion:
+                ret = true;
+                break;
+            case RunAway:
+                ret = true;
+                break;
+            default:
+                throw new IllegalStateException("Unexpected value: " + actionKind);
+        }
+        return ret;
 
     }
 }
+
 
 /*pseudo code:
 

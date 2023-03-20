@@ -2,6 +2,7 @@ package com.isep.harrypotterrpg.core;
 
 
 
+import com.isep.harrypotterrpg.Character.Action;
 import com.isep.harrypotterrpg.Character.Character;
 import com.isep.harrypotterrpg.Character.wizard.AbstractSpell;
 import com.isep.harrypotterrpg.Character.wizard.Wizard;
@@ -75,6 +76,49 @@ public class GUIParser implements InputOutputParser{
         System.out.println("Voici les stats de vos sorts");
         System.out.println(x.getNameSpell());
         return true;
+    }
+
+    public Action.HeroAction AskAction(Wizard wizard){
+        Action.HeroAction ret = Action.HeroAction.NONE;
+        String text = "Hi , ";
+        String title = "Choose the Action";
+        if (wizard.HasThisCapacity(Action.HeroAction.Spell1) ){
+            text += "'Spell1', ";
+        }
+        if (wizard.HasThisCapacity(Action.HeroAction.Spell2) ){
+            text += "'Spell2', ";
+        }
+        if (wizard.HasThisCapacity(Action.HeroAction.Potion)){
+            text += "'Potions', ";
+        }
+        if (wizard.HasThisCapacity(Action.HeroAction.RunAway) ){
+            text += "'RunAway', ";
+        }
+        String userInput = AKindOfDialogBox(title, text).toLowerCase().trim();
+        switch (userInput){
+            case "Spell1":
+                ret = Action.HeroAction.Spell1;
+                break;
+        }
+        switch (userInput){
+            case "Spell2":
+                ret = Action.HeroAction.Spell2;
+                break;
+        }
+        switch (userInput){
+            case "Potion":
+                ret = Action.HeroAction.Potion;
+                break;
+        }
+        switch (userInput){
+            case "RunAway":
+                ret = Action.HeroAction.RunAway;
+                break;
+        }
+
+        return ret;
+
+
     }
 
     public Optional<String> showTheDialog(String dlgTitle, String dlgQuestion, String dlgDefaultAnswer){

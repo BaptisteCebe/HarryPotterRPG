@@ -1,12 +1,14 @@
 package com.isep.harrypotterrpg.core;
 
 
+import com.isep.harrypotterrpg.Character.Action;
 import com.isep.harrypotterrpg.Character.Character;
 import com.isep.harrypotterrpg.Character.wizard.AbstractSpell;
 import com.isep.harrypotterrpg.Character.wizard.Wizard;
 import com.isep.harrypotterrpg.Character.wizard.spell.Spell;
 import com.isep.harrypotterrpg.sortinghat.SortingHat;
 
+import javax.net.ssl.SSLContext;
 import java.util.List;
 import java.util.Scanner;
 
@@ -58,10 +60,13 @@ public class ConsoleParser implements InputOutputParser {
 
     public boolean PlayerInfo(String description, Character w){
         System.out.println(description);
+        System.out.println("Votre nom : "+ w.getNameCharacter());
         System.out.println("Life points : " + w.getLifePoints());
+        System.out.println("Max Life points : "+ w.getMaxLifePoints());
         System.out.println("Damage points : " + w.getLifePoints());
-        System.out.println("Damage points : " + w.getDefensePoints());
-        System.out.println("Damage points : " + w.getPrecisionPoints());
+        System.out.println("Defense points : " + w.getDefensePoints());
+        System.out.println("Precision points : " + w.getPrecisionPoints());
+        System.out.println("mMax Precision points : "+ w.getMaxPrecisionPoints());
         System.out.println("");
         return true;
     }
@@ -74,6 +79,57 @@ public class ConsoleParser implements InputOutputParser {
         System.out.println("Spell defense : " + x.getDefenseSpell());
         System.out.println("Spell precision : " + x.getPrecisionSpell());
         return true;
+
+
+    }
+
+    public Action.HeroAction AskAction(Wizard wizard){
+        Action.HeroAction ret = Action.HeroAction.NONE;
+        while(ret == Action.HeroAction.NONE){
+
+
+            String text = "Hi , ";
+            String title = "Choose the Action";
+            if (wizard.HasThisCapacity(Action.HeroAction.Spell1) ){
+                text += "'[1]Spell1', ";
+            }
+            if (wizard.HasThisCapacity(Action.HeroAction.Spell2) ){
+                text += "'[2]Spell2', ";
+            }
+            if (wizard.HasThisCapacity(Action.HeroAction.Potion)){
+                text += "'[3]Potions', ";
+            }
+            if (wizard.HasThisCapacity(Action.HeroAction.RunAway) ){
+                text += "'[4]RunAway', ";
+            }
+            String userInput = AKindOfDialogBox(title, text).toLowerCase().trim();
+            switch (userInput) {
+                case "1":
+                    ret = Action.HeroAction.Spell1;
+                    break;
+
+                case "2":
+                    ret = Action.HeroAction.Spell2;
+                    break;
+
+                case "3":
+                    ret = Action.HeroAction.Potion;
+                    break;
+
+                case "4":
+                    ret = Action.HeroAction.RunAway;
+                    break;
+                default:
+                    ret = Action.HeroAction.NONE;
+                    DisplayString("Choix de l'action, vous devez choisir une des actions proposées");
+            }
+
+        }
+
+
+
+
+        return ret;
 
 
     }

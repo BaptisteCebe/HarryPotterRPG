@@ -1,5 +1,6 @@
 package com.isep.harrypotterrpg.core;
 
+import com.isep.harrypotterrpg.Character.Action;
 import com.isep.harrypotterrpg.Character.Character;
 import com.isep.harrypotterrpg.Character.wizard.AbstractSpell;
 
@@ -80,6 +81,16 @@ public class DispatcherParser implements InputOutputParser{
 
 
         return answer;
+    }
+
+    // input interface members
+    public Action.HeroAction AskAction(Wizard wizard){
+        Action.HeroAction ret= Action.HeroAction.NONE;
+        if (isGUI)
+            ret = theGUIParser.AskAction(wizard);
+        else
+            ret = theConsoleParser.AskAction(wizard);
+        return ret;
     }
 
 

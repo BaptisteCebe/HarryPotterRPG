@@ -1,9 +1,12 @@
 package com.isep.harrypotterrpg.core;
+import com.isep.harrypotterrpg.Character.Action;
 import com.isep.harrypotterrpg.Character.enemy.Boss;
 import com.isep.harrypotterrpg.Character.wizard.Wizard;
+import com.isep.harrypotterrpg.Character.wizard.atributs.House;
 import com.isep.harrypotterrpg.Character.wizard.spell.*;
+import com.isep.harrypotterrpg.core.DispatcherParser;
 import com.isep.harrypotterrpg.core.Story;
-
+import com.isep.harrypotterrpg.sortinghat.SortingHat;
 
 
 public class Game {
@@ -40,13 +43,19 @@ public class Game {
         boolean ret = false;
 
 
-
+        SortingHat theSortingHat = new SortingHat();
+        House theHouse = theSortingHat.randHouse();
         Story theStory = new Story();
+        Action.HeroAction playerAction;
 
         String playerName = this.theDispatcherParser.AKindOfDialogBox("Choix du nom", "Veuillez saisir le nom de votre sorcier (max:20 caractères).");
+        theStory.setPlayerName(playerName);
         this.theDispatcherParser.DisplayString(theStory.getString(Story.StoryType.Intro));
-        Wizard player = new Wizard(60f,20f, 50f, 80);
-        Boss boss = new Boss(100f,50f, 100f, 80f);
+        this.theDispatcherParser.DisplayString("Bienvenue à " + theStory.getHouseString(theHouse));
+
+
+        Wizard player = new Wizard(playerName, 60f,60f,20f, 50f, 80, 100f);
+        Boss boss = new Boss("Troll",100f,100f,50f, 100f, 80f, 100f);
 
         Spell spell = new Spell("WINGARDIUM LEVIOSA", 10f,10f,10f,15f);
 
@@ -62,6 +71,11 @@ public class Game {
         System.out.println("");
 
         this.theDispatcherParser.PlayerInfo("Voici les stats du Boss",boss);
+
+        playerAction = theDispatcherParser.AskAction(player);
+        System.out.println(playerAction);
+
+
 
 
         return ret;
