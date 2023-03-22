@@ -1,7 +1,11 @@
 package com.isep.harrypotterrpg.core;
 import com.isep.harrypotterrpg.Character.wizard.atributs.House;
+import com.isep.harrypotterrpg.Character.wizard.atributs.Pet;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.spi.AbstractResourceBundleProvider;
+
 public class Story {
 
     public enum StoryType {
@@ -43,16 +47,16 @@ public class Story {
         String ret = "";
         switch (h) {
             case GRIFFINDOR:
-                ret = "Griffondor";
+                ret = "GRINFFINDOR";
                 break;
             case HUFFLEPUFF:
-                ret = "toto";
+                ret = "RAVENCLAW";
                 break;
             case SLITHERIN:
-                ret = "toto1";
+                ret = "HUFFLEPUFF";
                 break;
             case RAVENCLAW:
-                ret = "toto2";
+                ret = "SLITHERIN";
                 break;
             default:
                 ret = "Pas de texte trouvé !";
@@ -63,6 +67,31 @@ public class Story {
         return ret;
     }
 
+    public String getPetString(Pet p){
+        String ret = "";
+        switch (p) {
+            case OWL:
+                ret = "OWL";
+                break;
+            case RAT:
+                ret = "RAT";
+                break;
+            case CAT:
+                ret = "CAT";
+                break;
+            case TOAD:
+                ret = "TOAD";
+                break;
+            case DOBY:
+                ret = "DOBY";
+                break;
+            case DWARF:
+                ret = "DWARF";
+                break;
+        }
+        return ret;
+
+    }
 }
 
 

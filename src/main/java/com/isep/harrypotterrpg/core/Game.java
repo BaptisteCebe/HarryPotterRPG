@@ -3,6 +3,7 @@ import com.isep.harrypotterrpg.Character.Action;
 import com.isep.harrypotterrpg.Character.enemy.Boss;
 import com.isep.harrypotterrpg.Character.wizard.Wizard;
 import com.isep.harrypotterrpg.Character.wizard.atributs.House;
+import com.isep.harrypotterrpg.Character.wizard.atributs.Pet;
 import com.isep.harrypotterrpg.Character.wizard.spell.*;
 import com.isep.harrypotterrpg.core.DispatcherParser;
 import com.isep.harrypotterrpg.core.Story;
@@ -47,11 +48,14 @@ public class Game {
         House theHouse = theSortingHat.randHouse();
         Story theStory = new Story();
         Action.HeroAction playerAction;
+        Pet thePet = theSortingHat.randPet();
+
 
         String playerName = this.theDispatcherParser.AKindOfDialogBox("Choix du nom", "Veuillez saisir le nom de votre sorcier (max:20 caractères).");
         theStory.setPlayerName(playerName);
         this.theDispatcherParser.DisplayString(theStory.getString(Story.StoryType.Intro));
         this.theDispatcherParser.DisplayString("Bienvenue à " + theStory.getHouseString(theHouse));
+        this.theDispatcherParser.DisplayString("Vous avec comme animal pour vous acompagner au cous de cette aventure un : "+ theStory.getPetString(thePet));
 
 
         Wizard player = new Wizard(playerName, 60f,60f,20f, 50f, 80, 100f);
@@ -74,6 +78,7 @@ public class Game {
 
         playerAction = theDispatcherParser.AskAction(player);
         System.out.println(playerAction);
+
 
 
 

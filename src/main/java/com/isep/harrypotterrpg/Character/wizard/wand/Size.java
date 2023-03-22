@@ -1,4 +1,9 @@
 package com.isep.harrypotterrpg.Character.wizard.wand;
 
-public class Size {
+import java.util.ConcurrentModificationException;
+
+public enum Size {
+
+
+
 }

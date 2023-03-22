@@ -9,6 +9,7 @@ import com.isep.harrypotterrpg.Character.wizard.spell.Spell;
 import com.isep.harrypotterrpg.sortinghat.SortingHat;
 
 import javax.net.ssl.SSLContext;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -62,14 +63,14 @@ public class ConsoleParser implements InputOutputParser {
         System.out.println(description);
         System.out.println("Votre nom : "+ w.getNameCharacter());
         System.out.println("Life points : " + w.getLifePoints());
-        System.out.println("Max Life points : "+ w.getMaxLifePoints());
         System.out.println("Damage points : " + w.getLifePoints());
         System.out.println("Defense points : " + w.getDefensePoints());
         System.out.println("Precision points : " + w.getPrecisionPoints());
-        System.out.println("mMax Precision points : "+ w.getMaxPrecisionPoints());
         System.out.println("");
         return true;
     }
+
+
 
     public boolean SpellInfo(String description, AbstractSpell x){
         System.out.println(description);
@@ -125,8 +126,6 @@ public class ConsoleParser implements InputOutputParser {
             }
 
         }
-
-
 
 
         return ret;
