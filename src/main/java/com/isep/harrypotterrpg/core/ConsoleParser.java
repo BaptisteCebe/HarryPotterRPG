@@ -3,6 +3,7 @@ package com.isep.harrypotterrpg.core;
 
 import com.isep.harrypotterrpg.Character.Action;
 import com.isep.harrypotterrpg.Character.Character;
+import com.isep.harrypotterrpg.Character.enemy.Boss;
 import com.isep.harrypotterrpg.Character.wizard.AbstractSpell;
 import com.isep.harrypotterrpg.Character.wizard.Wizard;
 import com.isep.harrypotterrpg.Character.wizard.spell.Spell;
@@ -63,7 +64,18 @@ public class ConsoleParser implements InputOutputParser {
         System.out.println(description);
         System.out.println("Votre nom : "+ w.getNameCharacter());
         System.out.println("Life points : " + w.getLifePoints());
-        System.out.println("Damage points : " + w.getLifePoints());
+        System.out.println("Damage points : " + w.getDamagePoints());
+        System.out.println("Defense points : " + w.getDefensePoints());
+        System.out.println("Precision points : " + w.getPrecisionPoints());
+        System.out.println("");
+        return true;
+    }
+
+    public boolean BossInfo(String description, Character w){
+        System.out.println(description);
+        System.out.println("Votre nom : "+ w.getNameCharacter());
+        System.out.println("Life points : " + w.getLifePoints());
+        System.out.println("Damage points : " + w.getDamagePoints());
         System.out.println("Defense points : " + w.getDefensePoints());
         System.out.println("Precision points : " + w.getPrecisionPoints());
         System.out.println("");
@@ -106,18 +118,22 @@ public class ConsoleParser implements InputOutputParser {
             String userInput = AKindOfDialogBox(title, text).toLowerCase().trim();
             switch (userInput) {
                 case "1":
+                    System.out.println("Le joueur lance un sort");
                     ret = Action.HeroAction.Spell1;
                     break;
 
                 case "2":
+                    System.out.println("Le joueur lance un sort");
                     ret = Action.HeroAction.Spell2;
                     break;
 
                 case "3":
+                    System.out.println("Le joueur boit une potion");
                     ret = Action.HeroAction.Potion;
                     break;
 
                 case "4":
+                    System.out.println("Le joueur prend la fuite");
                     ret = Action.HeroAction.RunAway;
                     break;
                 default:

@@ -6,8 +6,8 @@ import lombok.Getter;
 import lombok.Setter;
 public class Wizard extends Character {
 
-    public Wizard(String nameCharacter,float lifePoints,float maxLifePoints,float damagePoints, float defensePoints, float precisionPoints, float maxPrecisionPoints){
-        super (nameCharacter,lifePoints,maxLifePoints,damagePoints, defensePoints, precisionPoints, maxPrecisionPoints);
+    public Wizard(String nameCharacter,float lifePoints,float damagePoints, float defensePoints, float precisionPoints,float maxLifePoints, float maxPrecisionPoints){
+        super (nameCharacter,lifePoints,damagePoints, defensePoints, precisionPoints,maxLifePoints, maxPrecisionPoints);
 
     }
 
