@@ -19,7 +19,16 @@ public class Potion {
     @Setter
     private float precisionPotion;
 
+
+    public Potion(String namePotion, float damagePotion, float healPotion, float defensePotion, float precisionPotion){
+        this.namePotion = namePotion;
+        this.damagePotion = damagePotion;
+        this.healPotion = healPotion;
+        this.defensePotion = defensePotion;
+        this.precisionPotion = precisionPotion;
+    }
 }
+
 
 
 

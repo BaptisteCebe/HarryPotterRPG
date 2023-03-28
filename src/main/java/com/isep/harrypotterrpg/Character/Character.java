@@ -9,7 +9,7 @@ import lombok.Setter;
         @Setter
         private String nameCharacter;
         @Getter
-        @Setter
+
         private float lifePoints;
         @Getter
         @Setter
@@ -28,7 +28,18 @@ import lombok.Setter;
         @Setter
         private float maxPrecisionPoints;
 
-        public Character(String nameCharacter,float lifePoints,float maxLifePoints, float damagePoints, float defensePoints, float precisionPoints, float maxPrecisionPoints)
+
+
+        public void setLifePoints(float newvalue)
+        {
+            if (newvalue < maxLifePoints)
+                lifePoints = newvalue;
+            else
+                lifePoints = maxLifePoints;
+
+        }
+
+        public Character(String nameCharacter,float lifePoints, float damagePoints, float defensePoints, float precisionPoints,float maxLifePoints, float maxPrecisionPoints)
         {
             this.nameCharacter = nameCharacter;
             this.lifePoints = lifePoints;

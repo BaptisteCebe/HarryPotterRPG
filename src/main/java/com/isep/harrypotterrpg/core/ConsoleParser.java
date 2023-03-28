@@ -61,24 +61,23 @@ public class ConsoleParser implements InputOutputParser {
     }
 
     public boolean PlayerInfo(String description, Character w){
-        System.out.println(description);
-        System.out.println("Votre nom : "+ w.getNameCharacter());
-        System.out.println("Life points : " + w.getLifePoints());
-        System.out.println("Damage points : " + w.getDamagePoints());
-        System.out.println("Defense points : " + w.getDefensePoints());
-        System.out.println("Precision points : " + w.getPrecisionPoints());
-        System.out.println("");
-        return true;
-    }
+        if(false) {
+            System.out.println(description);
+            System.out.println("Votre nom : " + w.getNameCharacter());
+            System.out.println("Life points : " + w.getLifePoints());
+            System.out.println("Damage points : " + w.getDamagePoints());
+            System.out.println("Defense points : " + w.getDefensePoints());
+            System.out.println("Precision points : " + w.getPrecisionPoints());
+            System.out.println("");
+        }
+        else {
+            System.out.println(description);
+            System.out.println(w.getNameCharacter() + "\t\t\tHP: " + w.getLifePoints()+ ",\t\t\tDa: " + w.getDamagePoints()+",\t\t\tDe: "+w.getDefensePoints()+",\t\t\tPr: "+w.getPrecisionPoints());
+            System.out.println("");
 
-    public boolean BossInfo(String description, Character w){
-        System.out.println(description);
-        System.out.println("Votre nom : "+ w.getNameCharacter());
-        System.out.println("Life points : " + w.getLifePoints());
-        System.out.println("Damage points : " + w.getDamagePoints());
-        System.out.println("Defense points : " + w.getDefensePoints());
-        System.out.println("Precision points : " + w.getPrecisionPoints());
-        System.out.println("");
+        }
+
+
         return true;
     }
 
