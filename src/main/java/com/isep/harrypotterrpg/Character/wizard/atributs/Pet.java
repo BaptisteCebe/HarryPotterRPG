@@ -2,11 +2,10 @@ package com.isep.harrypotterrpg.Character.wizard.atributs;
 
 
 public enum Pet {
-    OWL,
+    CHOUETTE,
     RAT,
-    CAT,
-    TOAD,
+    CHAT,
+    CRAPAUD,
     DOBY,
-    DWARF,
 }
 

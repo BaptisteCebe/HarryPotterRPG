@@ -2,10 +2,13 @@ package com.isep.harrypotterrpg.core;
 
 
 import com.isep.harrypotterrpg.Character.Action;
+import com.isep.harrypotterrpg.Character.ActionPotion;
 import com.isep.harrypotterrpg.Character.Character;
 import com.isep.harrypotterrpg.Character.enemy.Boss;
 import com.isep.harrypotterrpg.Character.wizard.AbstractSpell;
 import com.isep.harrypotterrpg.Character.wizard.Wizard;
+import com.isep.harrypotterrpg.Character.wizard.atributs.Potion;
+import com.isep.harrypotterrpg.Character.wizard.atributs.Potion;
 import com.isep.harrypotterrpg.Character.wizard.spell.Spell;
 import com.isep.harrypotterrpg.sortinghat.SortingHat;
 
@@ -72,7 +75,7 @@ public class ConsoleParser implements InputOutputParser {
         }
         else {
             System.out.println(description);
-            System.out.println(w.getNameCharacter() + "\t\t\tHP: " + w.getLifePoints()+ ",\t\t\tDa: " + w.getDamagePoints()+",\t\t\tDe: "+w.getDefensePoints()+",\t\t\tPr: "+w.getPrecisionPoints());
+            System.out.println(w.getNameCharacter() + "\t\t\tPoints de vie: " + w.getLifePoints()+ ",\t\t\tDégats: " + w.getDamagePoints()+",\t\t\tDéfense: "+w.getDefensePoints()+",\t\t\tPrécision: "+w.getPrecisionPoints());
             System.out.println("");
 
         }
@@ -84,12 +87,19 @@ public class ConsoleParser implements InputOutputParser {
 
 
     public boolean SpellInfo(String description, AbstractSpell x){
-        System.out.println(description);
-        System.out.println("SpellName : " + x.getNameSpell());
-        System.out.println("Spell damage : " + x.getDamageSpell());
-        System.out.println("Spell heal : " + x.getHealSpell());
-        System.out.println("Spell defense : " + x.getDefenseSpell());
-        System.out.println("Spell precision : " + x.getPrecisionSpell());
+        if(false) {
+            System.out.println(description);
+            System.out.println("SpellName : " + x.getNameSpell());
+            System.out.println("Spell damage : " + x.getDamageSpell());
+            System.out.println("Spell heal : " + x.getHealSpell());
+            System.out.println("Spell defense : " + x.getDefenseSpell());
+            System.out.println("Spell precision : " + x.getPrecisionSpell());
+        }
+        else {
+            System.out.println(description);
+            System.out.println(x.getNameSpell() + "\t\t\tPoints de vie: " + x.getHealSpell() + "\t\t\tDégats: " + x.getDamageSpell() + "\t\t\tDéfense: " + x.getDefenseSpell() + "\t\t\tPrécision: " + x.getPrecisionSpell());
+            System.out.println("");
+        }
         return true;
 
 
@@ -100,19 +110,19 @@ public class ConsoleParser implements InputOutputParser {
         while(ret == Action.HeroAction.NONE){
 
 
-            String text = "Hi , ";
-            String title = "Choose the Action";
+            String text = "Actions : ";
+            String title = "Que souhaitez vous utiliser ?";
             if (wizard.HasThisCapacity(Action.HeroAction.Spell1) ){
-                text += "'[1]Spell1', ";
+                text += "[1] Spell 1, ";
             }
             if (wizard.HasThisCapacity(Action.HeroAction.Spell2) ){
-                text += "'[2]Spell2', ";
+                text += "[2] Spell 2, ";
             }
             if (wizard.HasThisCapacity(Action.HeroAction.Potion)){
-                text += "'[3]Potions', ";
+                text += "[3] Potions, ";
             }
             if (wizard.HasThisCapacity(Action.HeroAction.RunAway) ){
-                text += "'[4]RunAway', ";
+                text += "[4] Fuite, ";
             }
             String userInput = AKindOfDialogBox(title, text).toLowerCase().trim();
             switch (userInput) {
@@ -142,14 +152,59 @@ public class ConsoleParser implements InputOutputParser {
 
         }
 
+        /*public ActionPotion.HeroPotion AskPotion(Potion potion)    {
+            ActionPotion.HeroPotion ret = ActionPotion.HeroPotion.NONE;
+            while(ret == ActionPotion.HeroPotion.NONE){
 
-        return ret;
+                String text = "Hi , ";
+                String title = "Choose the Potion";
+                if (potion.HasThisPotion(ActionPotion.HeroPotion.healPotion) ){
+                    text += "'[1]Heal Potion', ";
+                }
+                if (potion.HasThisPotion(ActionPotion.HeroPotion.damagePotion) ){
+                    text += "'[2]damage Potion', ";
+                }
+                if (potion.HasThisPotion(ActionPotion.HeroPotion.defensePotion)){
+                    text += "'[3]Potion de défense', ";
+                }
+                if (potion.HasThisPotion(ActionPotion.HeroPotion.precisionPotion) ){
+                    text += "'[4]Potion de précision', ";
+                }
+                String userInput = AKindOfDialogBox(title, text).toLowerCase().trim();
+                switch (userInput) {
+                    case "1":
+                        System.out.println("Le joueur lance un sort");
+                        ret = ActionPotion.HeroPotion.healPotion;
+                        break;
 
+                    case "2":
+                        System.out.println("Le joueur lance un sort");
+                        ret = ActionPotion.HeroPotion.damagePotion;
+                        break;
 
-    }
+                    case "3":
+                        System.out.println("Le joueur boit une potion");
+                        ret = ActionPotion.HeroPotion.defensePotion;
+                        break;
+
+                    case "4":
+                        System.out.println("Le joueur prend la fuite");
+                        ret = ActionPotion.HeroPotion.precisionPotion;
+                        break;
+                    default:
+                        ret = ActionPotion.HeroPotion.NONE;
+                        DisplayString("Choix de l'action, vous devez choisir une des actions proposées");
+                }
+
+            }*/
+            return ret;
+
+        }
 
 
 
 }
+
+
 
 

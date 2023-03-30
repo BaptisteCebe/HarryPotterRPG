@@ -26,10 +26,7 @@ public class Story {
         String ret = "";
         switch (st) {
             case Intro:
-                ret = "Bienvenue ¤#playerName#¤ à l'école des sorciers" + "\n\r" +
-
-
-                        "Maintenant que tu est un sorcier, afronte ce troll avec seulement 2 sorts";
+                ret = "Bienvenue ¤#playerName#¤ à l'école des sorciers" + "\n\r";
                 break;
             case Developpement:
                 ret = "toto";
@@ -47,16 +44,16 @@ public class Story {
         String ret = "";
         switch (h) {
             case GRIFFINDOR:
-                ret = "GRINFFINDOR";
+                ret = "GRIFFONDOR";
                 break;
             case HUFFLEPUFF:
-                ret = "RAVENCLAW";
+                ret = "POUFSOUFFLE";
                 break;
             case SLITHERIN:
-                ret = "HUFFLEPUFF";
+                ret = "SERPENTARD";
                 break;
             case RAVENCLAW:
-                ret = "SLITHERIN";
+                ret = "SERDAIGLE";
                 break;
             default:
                 ret = "Pas de texte trouvé !";
@@ -70,23 +67,20 @@ public class Story {
     public String getPetString(Pet p){
         String ret = "";
         switch (p) {
-            case OWL:
-                ret = "OWL";
+            case CHOUETTE:
+                ret = "CHOUETTE";
                 break;
             case RAT:
                 ret = "RAT";
                 break;
-            case CAT:
-                ret = "CAT";
+            case CHAT:
+                ret = "CHAT";
                 break;
-            case TOAD:
-                ret = "TOAD";
+            case CRAPAUD:
+                ret = "CRAPAUD";
                 break;
             case DOBY:
                 ret = "DOBY";
-                break;
-            case DWARF:
-                ret = "DWARF";
                 break;
         }
         return ret;

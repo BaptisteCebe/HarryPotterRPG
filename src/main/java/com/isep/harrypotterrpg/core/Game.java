@@ -1,5 +1,6 @@
 package com.isep.harrypotterrpg.core;
 import com.isep.harrypotterrpg.Character.Action;
+import com.isep.harrypotterrpg.Character.ActionPotion;
 import com.isep.harrypotterrpg.Character.enemy.Boss;
 import com.isep.harrypotterrpg.Character.wizard.Wizard;
 import com.isep.harrypotterrpg.Character.wizard.atributs.House;
@@ -57,14 +58,20 @@ public class Game {
         String playerName = this.theDispatcherParser.AKindOfDialogBox("Choix du nom", "Veuillez saisir le nom de votre sorcier (max:20 caractères).");
         theStory.setPlayerName(playerName);
         this.theDispatcherParser.DisplayString(theStory.getString(Story.StoryType.Intro));
-        this.theDispatcherParser.DisplayString("Bienvenue à " + theStory.getHouseString(theHouse));
+        System.out.println("");
+        this.theDispatcherParser.DisplayString("Le choipeau vous a assigné a la maison " + theStory.getHouseString(theHouse));
+        System.out.println("");
         this.theDispatcherParser.DisplayString("Vous avec comme animal pour vous acompagner au cous de cette aventure un : " + theStory.getPetString(thePet));
 
 
-        Wizard player = new Wizard(playerName, 160f, 60f, 20f, 50f, 160, 100f);
-        Spell spell = new Spell("WINGARDIUM LEVIOSA", 10f, 10f, 10f, 15f);
+        Wizard player = new Wizard(playerName, 100f, 10f, 10f, 50f, 100f, 100f);
+        Spell spell1 = new Spell("WINGARDIUM LEVIOSA", 20f, 0f, 0f, 0f);
         Spell spell2 = new Spell("REPARO", 20f, 10f, 10f, 15f);
+
         Potion healpotion = new Potion("Heal Potion", 0f, 50f, 0f, 0f);
+        Potion damagepotion = new Potion("Damage Potion", 20f, 0f, 0f, 0f);
+        Potion defensepotion = new Potion("Damage Potion", 0f, 0f, 20f, 0f);
+        Potion precisionpotion = new Potion("Damage Potion", 0f, 0f, 0f, 10f);
 
         int currentLevel = 0;
         boolean playerIsAlive =true;
@@ -79,24 +86,23 @@ public class Game {
 
 
             System.out.println("");
-            this.theDispatcherParser.PlayerInfo("Voici vos stats", player);
+            this.theDispatcherParser.PlayerInfo("Voici vos statistiques", player);
             System.out.println("");
 
-            this.theDispatcherParser.SpellInfo("Voici les stats de votre premier sort", spell);
+            this.theDispatcherParser.SpellInfo("Voici les stats de votre premier sort", spell1);
             System.out.println("");
 
             this.theDispatcherParser.SpellInfo("Voici les stats de votre second sort", spell2);
             System.out.println("");
 
-            this.theDispatcherParser.PlayerInfo("Voici les stats du Boss", boss);
+            this.theDispatcherParser.PlayerInfo("Voici les stats du Boss que vous affrontez", boss);
             while (player.getLifePoints() > 0 && boss.getLifePoints() > 0) {
 
                 System.out.println("Le combat commence");
-                System.out.println("Que voulez vous faire");
 
                 Action.HeroAction newPlayerAction = theDispatcherParser.AskAction(player);
                 if (newPlayerAction == Action.HeroAction.Spell1) {
-                    boss.setLifePoints(boss.getLifePoints() - (spell.getDamageSpell() + player.getDamagePoints()));
+                    boss.setLifePoints(boss.getLifePoints() - (spell1.getDamageSpell() + player.getDamagePoints()));
                     this.theDispatcherParser.DisplayString("Le boss a " + boss.getLifePoints() + "hp");
                 }
 
@@ -106,26 +112,29 @@ public class Game {
                 }
 
                 if (newPlayerAction == Action.HeroAction.Potion) {
+
                     player.setLifePoints(player.getLifePoints() + healpotion.getHealPotion());
                     this.theDispatcherParser.DisplayString("Vous avez " + player.getLifePoints() + "hp");
                 }
 
-
-                System.out.println("Le boss attaque");
-                player.setLifePoints(player.getLifePoints() - boss.getDamagePoints());
+                System.out.println("");
+                System.out.println("Le boss attaque à son tour");
+                System.out.println("Vous recevez des dégats");
+                player.setLifePoints(player.getLifePoints() - (boss.getDamagePoints()/(player.getDefensePoints()*0.15f)));
                 this.theDispatcherParser.DisplayString("Vous avez " + player.getLifePoints() + "hp");
+                System.out.println("");
 
             }
 
 
             if (player.getLifePoints() > 0 && boss.getLifePoints() <= 0)
             {
-                this.theDispatcherParser.DisplayString("Fin de partie, vous passez au niveau suivant");
+                this.theDispatcherParser.DisplayString("Fin du niveau, vous passez au niveau suivant");
                 currentLevel += 1;
             }
             else
             {
-                this.theDispatcherParser.DisplayString("Fin de partie, You loose : no more heroes are alive ... Try again !");
+                this.theDispatcherParser.DisplayString("Fin de partie, vous êtes morts");
                 playerIsAlive=false;
             }
             if(playerIsAlive)
@@ -133,35 +142,37 @@ public class Game {
                 // reset player stat
                 player.setLifePoints(player.getMaxLifePoints());
                 // improve selectif
-                String improveChoice = this.theDispatcherParser.AKindOfDialogBox("Choix de l'amélioration", "Souhaitez améliorer : [HP]P, [Da]mage, [De]fense, [Pr]ecision").toUpperCase();
-                if (improveChoice.equals("HP"))
+                String improveChoice = this.theDispatcherParser.AKindOfDialogBox("Choix de l'amélioration", "Souhaitez améliorer : [1]HP, [2]Damage, [3]Defense, [4]Precision");
+                if (improveChoice.equals("1"))
                 {
-                    player.setMaxLifePoints(player.getMaxLifePoints() * 1.1f);
+                    player.setMaxLifePoints(player.getMaxLifePoints() * 1.5f);
                     player.setLifePoints(player.getMaxLifePoints());
+                    spell1.setDamageSpell(spell1.getDamageSpell() * 1.5f);
+                    spell2.setDamageSpell(spell2.getDamageSpell() * 1.5f);
                 }
-                else if (improveChoice.equals("DA"))
+                else if (improveChoice.equals("2"))
                 {
-                    player.setDamagePoints(player.getDamagePoints() * 1.1f);
-                }
-
-                else if (improveChoice.equals("DE"))
-                {
-                    player.setDefensePoints(player.getDefensePoints() * 1.1f);
+                    player.setDamagePoints(player.getDamagePoints() * 1.5f);
                 }
 
-                else if (improveChoice.equals("PR"))
+                else if (improveChoice.equals("3"))
                 {
-                    player.setPrecisionPoints(player.getPrecisionPoints() * 1.1f);
+                    player.setDefensePoints(player.getDefensePoints() * 1.5f);
+                }
+
+                else if (improveChoice.equals("4"))
+                {
+                    player.setPrecisionPoints(player.getPrecisionPoints() * 1.5f);
                 }
             }
         }
         if (player.getLifePoints() > 0)
         {
-            this.theDispatcherParser.AKindOfDialogBox("Fin de partie", "Vous avez gagné");
+            this.theDispatcherParser.AKindOfDialogBox("Fin de partie", "Vous avez gagné !");
         }
         else
         {
-            this.theDispatcherParser.AKindOfDialogBox("Fin de partie", "You loose : no more heroes are alive ... Try again !");
+            this.theDispatcherParser.AKindOfDialogBox("Fin de partie", "Vous êtes morts, réessayez !");
         }
         return ret;
     }

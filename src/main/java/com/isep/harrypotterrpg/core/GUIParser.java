@@ -3,9 +3,11 @@ package com.isep.harrypotterrpg.core;
 
 
 import com.isep.harrypotterrpg.Character.Action;
+import com.isep.harrypotterrpg.Character.ActionPotion;
 import com.isep.harrypotterrpg.Character.Character;
 import com.isep.harrypotterrpg.Character.wizard.AbstractSpell;
 import com.isep.harrypotterrpg.Character.wizard.Wizard;
+import com.isep.harrypotterrpg.Character.wizard.atributs.Potion;
 import com.isep.harrypotterrpg.Character.wizard.spell.Spell;
 import com.isep.harrypotterrpg.sortinghat.SortingHat;
 import javafx.scene.control.ButtonType;
@@ -120,6 +122,57 @@ public class GUIParser implements InputOutputParser{
 
 
     }
+
+    public ActionPotion.HeroPotion AskPotion (Potion potion){
+        ActionPotion.HeroPotion ret = ActionPotion.HeroPotion.NONE;
+        while(ret == ActionPotion.HeroPotion.NONE){
+
+
+            String text = "Hi , ";
+            String title = "Choose the Potion";
+            if (potion.HasThisPotion(ActionPotion.HeroPotion.healPotion) ){
+                text += "'[1]Heal Potion', ";
+            }
+            if (potion.HasThisPotion(ActionPotion.HeroPotion.damagePotion) ){
+                text += "'[2]damage Potion', ";
+            }
+            if (potion.HasThisPotion(ActionPotion.HeroPotion.defensePotion)){
+                text += "'[3]Potion de défense', ";
+            }
+            if (potion.HasThisPotion(ActionPotion.HeroPotion.precisionPotion) ){
+                text += "'[4]Potion de précision', ";
+            }
+            String userInput = AKindOfDialogBox(title, text).toLowerCase().trim();
+            switch (userInput) {
+                case "1":
+                    System.out.println("Le joueur lance un sort");
+                    ret = ActionPotion.HeroPotion.healPotion;
+                    break;
+
+                case "2":
+                    System.out.println("Le joueur lance un sort");
+                    ret = ActionPotion.HeroPotion.damagePotion;
+                    break;
+
+                case "3":
+                    System.out.println("Le joueur boit une potion");
+                    ret = ActionPotion.HeroPotion.defensePotion;
+                    break;
+
+                case "4":
+                    System.out.println("Le joueur prend la fuite");
+                    ret = ActionPotion.HeroPotion.precisionPotion;
+                    break;
+                default:
+                    ret = ActionPotion.HeroPotion.NONE;
+                    DisplayString("Choix de l'action, vous devez choisir une des actions proposées");
+            }
+
+        }
+        return ret;
+
+    }
+
 
     public Optional<String> showTheDialog(String dlgTitle, String dlgQuestion, String dlgDefaultAnswer){
         TextInputDialog dialog = new TextInputDialog(dlgDefaultAnswer);

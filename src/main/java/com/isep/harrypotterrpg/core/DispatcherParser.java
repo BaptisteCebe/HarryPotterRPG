@@ -1,10 +1,12 @@
 package com.isep.harrypotterrpg.core;
 
 import com.isep.harrypotterrpg.Character.Action;
+import com.isep.harrypotterrpg.Character.ActionPotion;
 import com.isep.harrypotterrpg.Character.Character;
 import com.isep.harrypotterrpg.Character.wizard.AbstractSpell;
 
 import com.isep.harrypotterrpg.Character.wizard.Wizard;
+import com.isep.harrypotterrpg.Character.wizard.atributs.Potion;
 import com.isep.harrypotterrpg.Character.wizard.spell.Spell;
 import com.isep.harrypotterrpg.sortinghat.SortingHat;
 
@@ -92,6 +94,15 @@ public class DispatcherParser implements InputOutputParser{
             ret = theConsoleParser.AskAction(wizard);
         return ret;
     }
+
+    /*public ActionPotion.HeroPotion AskPotion(Potion potion){
+        ActionPotion.HeroPotion ret= ActionPotion.HeroPotion.NONE;
+        if (isGUI)
+            ret = theGUIParser.AskPotion(potion);
+        else
+            ret = theConsoleParser.AskPotion(potion);
+        return ret;
+    }*/
 
 
 
